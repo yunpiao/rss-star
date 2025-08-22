@@ -1,0 +1,838 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow: hidden;
+}
+
+.starsky-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: #000000;
+    overflow: hidden;
+    cursor: default;
+}
+
+/* ==============================================
+   星空光晕系统 - 多层次光效设计
+   ==============================================
+
+   设计理念：
+   - 每个等级的星星都有独特的颜色光晕系统
+   - 使用box-shadow创建外层光圈效果
+   - 使用伪元素::after创建内层光晕层
+   - 不同等级有不同的动画速度和强度
+   - 随机延时让星空更自然生动
+
+   等级系统：
+   - 微星：纯白光晕，简洁优雅
+   - 小星：蓝色系光晕，清新淡雅
+   - 中星：橙色系光晕，温暖明亮
+   - 亮星：金黄色系光晕，璀璨夺目
+   - 超星：纯金色光晕，至高无上的存在
+   ============================================== */
+
+/* 星星基础样式 */
+.star {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('1755825918.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* 微星伪元素光晕 - 缩小在30px内 */
+.star[data-level="微星"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.2) 30%,
+        rgba(255, 255, 255, 0.1) 60%,
+        transparent 80%
+    );
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.6;
+    animation: center-glow-pulse 2.5s infinite ease-in-out;
+}
+
+/* 小星伪元素光晕 - 蓝色系，缩小在30px内 */
+.star[data-level="小星"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(170, 204, 255, 0.6) 0%,
+        rgba(170, 204, 255, 0.4) 30%,
+        rgba(170, 204, 255, 0.2) 60%,
+        rgba(255, 255, 255, 0.1) 80%,
+        transparent 90%
+    );
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.7;
+    animation: center-glow-pulse 2.2s infinite ease-in-out;
+}
+
+/* 中星伪元素光晕 - 橙色系，缩小在30px内 */
+.star[data-level="中星"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 204, 170, 0.7) 0%,
+        rgba(255, 204, 170, 0.5) 30%,
+        rgba(255, 204, 170, 0.3) 60%,
+        rgba(255, 255, 255, 0.1) 80%,
+        transparent 90%
+    );
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.8;
+    animation: center-glow-pulse 2s infinite ease-in-out;
+}
+
+/* 亮星伪元素光晕 - 金黄色系，缩小在30px内 */
+.star[data-level="亮星"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 238, 170, 0.8) 0%,
+        rgba(255, 238, 170, 0.6) 25%,
+        rgba(255, 215, 0, 0.4) 50%,
+        rgba(255, 215, 0, 0.2) 75%,
+        rgba(255, 255, 255, 0.1) 90%,
+        transparent 100%
+    );
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.9;
+    animation: bright-star-glow-pulse 1.8s infinite ease-in-out;
+}
+
+/* 超星伪元素光晕 - 纯金色增强系，缩小在30px内 */
+.star[data-level="超星"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 215, 0, 1) 0%,
+        rgba(255, 215, 0, 0.8) 20%,
+        rgba(255, 215, 0, 0.6) 40%,
+        rgba(255, 215, 0, 0.4) 60%,
+        rgba(255, 215, 0, 0.2) 80%,
+        rgba(255, 255, 255, 0.1) 95%,
+        transparent 100%
+    );
+    z-index: 10;
+    pointer-events: none;
+    opacity: 1;
+    animation: super-star-glow-pulse 1.5s infinite ease-in-out;
+    animation-delay: var(--pseudo-delay, 0s);
+}
+
+/* 中心光晕脉动动画 - 普通星星 */
+@keyframes center-glow-pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* 亮星光晕脉动动画 */
+@keyframes bright-star-glow-pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.9;
+    }
+    25% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.15);
+        opacity: 1;
+    }
+    75% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* 超星光晕脉动动画 */
+@keyframes super-star-glow-pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    20% {
+        transform: translate(-50%, -50%) scale(1.1) rotate(72deg);
+        opacity: 1;
+    }
+    40% {
+        transform: translate(-50%, -50%) scale(1.2) rotate(144deg);
+        opacity: 1;
+    }
+    60% {
+        transform: translate(-50%, -50%) scale(1.25) rotate(216deg);
+        opacity: 1;
+    }
+    80% {
+        transform: translate(-50%, -50%) scale(1.15) rotate(288deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(360deg);
+        opacity: 1;
+    }
+   
+}
+
+/* 星星闪烁动画 - 基础动画 */
+.star {
+    animation: flash 2.5s infinite ease-in-out;
+}
+
+/* 不同等级星星的动画速度差异 */
+.star[data-level="微星"] {
+    animation: flash 3s infinite ease-in-out;
+}
+
+.star[data-level="小星"] {
+    animation: flash 2.8s infinite ease-in-out;
+}
+
+.star[data-level="中星"] {
+    animation: flash 2.5s infinite ease-in-out;
+}
+
+@keyframes flash {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* 淡入淡出动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+
+
+/* 超星特殊样式类 */
+.star-super {
+    animation: super-star-main-animation 3s infinite ease-in-out;
+}
+
+/* 超星主元素动画 */
+@keyframes super-star-main-animation {
+    0%, 100% {
+        transform: scale(2.0);
+    }
+    50% {
+        transform: scale(2.1);
+    }
+}
+
+/* 星星hover效果 - 统一放大到2.5倍 */
+.star:hover {
+    transform: scale(2.5) !important;
+    transition: all 0.5s ease !important;
+    z-index: 100 !important;
+    animation-play-state: paused !important;
+}
+
+
+/* 亮星额外光晕动画 */
+@keyframes bright-star-extra-glow {
+    0%, 100% {
+        opacity: 0.95;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+}
+
+/* 超星额外光晕动画 - 微妙的旋转和脉动 */
+@keyframes super-star-extra-glow {
+    0% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        opacity: 1;
+        transform: scale(1.03) rotate(5deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05) rotate(0deg);
+    }
+    75% {
+        opacity: 1;
+        transform: scale(1.03) rotate(-5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* 信息面板样式 */
+.starsky-info {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+    color: white;
+    z-index: 5;
+}
+
+.starsky-info h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    background: linear-gradient(45deg, #ffffff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.starsky-info p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+/* 功能列表样式 */
+.feature-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-icon {
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+/* 隐藏按钮样式 */
+.info-toggle {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.info-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 面板隐藏状态 */
+.starsky-info.hidden {
+    opacity: 0;
+    transform: translateX(-100%);
+    pointer-events: none;
+}
+
+/* 显示按钮样式 */
+.show-info-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 100;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.show-info-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.show-info-btn.show {
+    display: flex;
+}
+
+/* 星星筛选按钮样式 */
+.star-filter {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 50;
+}
+
+.filter-toggle {
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.filter-toggle:hover {
+    background: rgba(0, 0, 0, 0.8);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.filter-panel {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 280px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.filter-panel.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.filter-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-option:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.filter-option.selected {
+    background: rgba(100, 150, 255, 0.3);
+    border: 1px solid rgba(100, 150, 255, 0.5);
+}
+
+.filter-checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.filter-checkbox.checked {
+    background: #6496ff;
+    border-color: #6496ff;
+}
+
+.filter-checkbox.checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.filter-option-info {
+    flex: 1;
+}
+
+.filter-option-name {
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+}
+
+.filter-option-detail {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 2px;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.filter-btn.primary {
+    background: #6496ff;
+    border-color: #6496ff;
+}
+
+.filter-btn.primary:hover {
+    background: #4a7eff;
+    border-color: #4a7eff;
+}
+
+/* ==============================================
+   流星特效系统
+   ==============================================
+
+   设计理念：
+   - 流星从屏幕顶部随机位置开始
+   - 以对角线方向划过屏幕
+   - 具有尾部拖拽效果
+   - 随机大小和速度
+   - 不定期出现，增加自然感
+   ============================================== */
+
+/* 流星容器 */
+.meteors-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2;
+}
+
+/* 流星基础样式 */
+.meteor {
+    position: absolute;
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0.8) 20%,
+        rgba(255, 215, 0, 0.6) 50%,
+        rgba(255, 215, 0, 0.3) 80%,
+        transparent 100%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transform-origin: center top;
+    animation: meteor-fall linear 1;
+    z-index: 3;
+}
+
+/* 流星尾巴效果 */
+.meteor::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -1px;
+    width: 4px;
+    height: 120px;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 30%,
+        rgba(255, 215, 0, 0.2) 70%,
+        transparent 100%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    animation: meteor-tail linear 1;
+}
+
+/* 流星下落动画 */
+@keyframes meteor-fall {
+    0% {
+        transform: translateY(-100px) translateX(0) rotate(45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(120vh) translateX(80vw) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* 流星尾巴动画 */
+@keyframes meteor-tail {
+    0% {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    10% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    90% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+}
+
+/* 不同大小的流星 */
+.meteor.small {
+    width: 1px;
+    height: 60px;
+}
+
+.meteor.medium {
+    width: 3px;
+    height: 100px;
+}
+
+.meteor.large {
+    width: 4px;
+    height: 140px;
+}
+
+/* 不同方向的流星 */
+.meteor.direction-1 {
+    animation: meteor-fall-1 linear 1;
+}
+
+.meteor.direction-2 {
+    animation: meteor-fall-2 linear 1;
+}
+
+.meteor.direction-3 {
+    animation: meteor-fall-3 linear 1;
+}
+
+.meteor.direction-4 {
+    animation: meteor-fall-4 linear 1;
+}
+
+/* 不同方向的流星动画 */
+@keyframes meteor-fall-1 {
+    0% {
+        transform: translateY(-100px) translateX(-20vw) rotate(30deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(120vh) translateX(100vw) rotate(30deg);
+        opacity: 0;
+    }
+}
+
+@keyframes meteor-fall-2 {
+    0% {
+        transform: translateY(-100px) translateX(20vw) rotate(60deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(120vh) translateX(-20vw) rotate(60deg);
+        opacity: 0;
+    }
+}
+
+@keyframes meteor-fall-3 {
+    0% {
+        transform: translateY(-100px) translateX(-10vw) rotate(45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(120vh) translateX(90vw) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+@keyframes meteor-fall-4 {
+    0% {
+        transform: translateY(-100px) translateX(10vw) rotate(50deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(120vh) translateX(-10vw) rotate(50deg);
+        opacity: 0;
+    }
+}
+
+/* 流星闪烁效果 */
+.meteor.twinkle {
+    animation: meteor-twinkle 0.5s ease-in-out 1 alternate;
+}
+
+@keyframes meteor-twinkle {
+    0% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+    }
+}

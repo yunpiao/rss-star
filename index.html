@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星空特效测试</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="starsky-container" id="starskyContainer">
+        <!-- 流星容器 -->
+        <div class="meteors-container" id="meteorsContainer"></div>
+
+        <!-- 显示说明面板的按钮 -->
+        <div class="show-info-btn" id="showInfoBtn">📋</div>
+
+        <!-- 调试信息显示 -->
+        <div id="debugInfo" style="position: fixed; top: 10px; left: 10px; background: rgba(0,0,0,0.8); color: white; padding: 10px; border-radius: 5px; font-size: 12px; z-index: 1000; display: none;">
+            <div>总星星数: <span id="totalStars">0</span></div>
+            <div>超星: <span id="superStars">0</span></div>
+            <div>亮星: <span id="brightStars">0</span></div>
+            <div>尝试次数: <span id="attempts">0</span></div>
+        </div>
+
+        <!-- 星星筛选按钮 -->
+        <div class="star-filter" id="starFilter">
+            <div class="filter-toggle" id="filterToggle" title="星星筛选">🔍</div>
+            <div class="filter-panel" id="filterPanel">
+                <div class="filter-title">选择显示的星星等级</div>
+                <div class="filter-options" id="filterOptions">
+                    <!-- 筛选选项将通过JavaScript动态生成 -->
+                </div>
+                <div class="filter-actions">
+                    <button class="filter-btn" id="selectAllBtn">全选</button>
+                    <button class="filter-btn" id="selectNoneBtn">全不选</button>
+                    <button class="filter-btn primary" id="applyFilterBtn">应用</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="starsky-info" id="starskyInfo">
+            <!-- 隐藏按钮 -->
+            <div class="info-toggle" id="infoToggle" title="隐藏说明面板">✕</div>
+
+            <h2>夜空星空特效</h2>
+            <p>点击星星看看会有什么效果哦！</p>
+
+            <!-- 星星等级说明 -->
+            <div style="margin-bottom: 20px;">
+                <h3 style="font-size: 20px; margin-bottom: 12px; color: #ffffff;">🌟 星星等级系统</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; margin-bottom: 16px;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; text-align: center;">
+                        <div style="font-size: 12px; opacity: 0.8;">微星</div>
+                        <div style="font-size: 20px;">✨</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.6);">60个</div>
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.5);">0.3x</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; text-align: center;">
+                        <div style="font-size: 12px; opacity: 0.8;">小星</div>
+                        <div style="font-size: 22px;">⭐</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.6);">50个</div>
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.5);">0.6x</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; text-align: center;">
+                        <div style="font-size: 12px; opacity: 0.8;">中星</div>
+                        <div style="font-size: 24px;">🌟</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.6);">30个</div>
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.5);">1.0x</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,255,255,0.1)); padding: 8px; border-radius: 6px; text-align: center; border: 1px solid rgba(255,215,0,0.3);">
+                        <div style="font-size: 12px; opacity: 0.8; color: #FFD700;">亮星</div>
+                        <div style="font-size: 26px;">💫</div>
+                        <div style="font-size: 11px; color: rgba(255,215,0,0.8);">8个</div>
+                        <div style="font-size: 10px; color: rgba(255,215,0,0.6);">1.5x</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(255,255,255,0.1)); padding: 8px; border-radius: 6px; text-align: center; border: 1px solid rgba(255,215,0,0.4);">
+                        <div style="font-size: 12px; opacity: 0.8; color: #FFD700;">超星</div>
+                        <div style="font-size: 28px;">🌟</div>
+                        <div style="font-size: 11px; color: rgba(255,215,0,0.8);">2个</div>
+                        <div style="font-size: 10px; color: rgba(255,215,0,0.6); margin-top: 2px;">2.0x 金色光晕</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="feature-icon">🌟</span>
+                    <span>150个分等级的星星</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✨</span>
+                    <span>星星闪烁动画效果</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🔍</span>
+                    <span>hover星星放大效果</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📏</span>
+                    <span>智能防重叠布局</span>
+                </div>
+                <div class="feature-item" style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,255,255,0.1)); border: 1px solid rgba(255,215,0,0.3);">
+                    <span class="feature-icon" style="color: #FFD700;">⭐</span>
+                    <span style="color: #FFD700; font-weight: 500;">超星金色光晕特效</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

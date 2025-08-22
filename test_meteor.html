@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>流星测试</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .test-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+        }
+
+        /* 流星容器 */
+        .meteors-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        /* 流星基础样式 */
+        .meteor {
+            position: absolute;
+            width: 2px;
+            height: 80px;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 1) 0%,
+                rgba(255, 255, 255, 0.8) 20%,
+                rgba(255, 215, 0, 0.6) 50%,
+                rgba(255, 215, 0, 0.3) 80%,
+                transparent 100%
+            );
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transform-origin: center top;
+            animation: meteor-fall linear 1;
+            z-index: 3;
+        }
+
+        /* 流星尾巴效果 */
+        .meteor::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -1px;
+            width: 4px;
+            height: 120px;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(255, 255, 255, 0.4) 30%,
+                rgba(255, 215, 0, 0.2) 70%,
+                transparent 100%
+            );
+            border-radius: 50%;
+            pointer-events: none;
+            animation: meteor-tail linear 1;
+        }
+
+        /* 流星下落动画 */
+        @keyframes meteor-fall {
+            0% {
+                transform: translateY(-100px) translateX(0) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(120vh) translateX(80vw) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        /* 流星尾巴动画 */
+        @keyframes meteor-tail {
+            0% {
+                opacity: 0;
+                transform: scaleY(0);
+            }
+            10% {
+                opacity: 1;
+                transform: scaleY(1);
+            }
+            90% {
+                opacity: 1;
+                transform: scaleY(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scaleY(0);
+            }
+        }
+
+        .test-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .test-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="meteors-container" id="meteorsContainer"></div>
+        <button class="test-btn" onclick="createTestMeteor()">测试流星</button>
+    </div>
+
+    <script>
+        function createTestMeteor() {
+            const container = document.getElementById('meteorsContainer');
+
+            const meteor = document.createElement('div');
+            meteor.className = 'meteor';
+
+            // 随机大小
+            const sizes = ['small', 'medium', 'large'];
+            const size = sizes[Math.floor(Math.random() * sizes.length)];
+            meteor.classList.add(size);
+
+            // 随机起始位置
+            const startX = Math.random() * 100;
+            const startY = -10;
+
+            // 随机速度
+            const speed = Math.random() * 10 + 8;
+
+            Object.assign(meteor.style, {
+                left: startX + 'vw',
+                top: startY + 'vh',
+                animationDuration: speed + 's'
+            });
+
+            container.appendChild(meteor);
+
+            console.log('测试流星已创建:', {
+                size: meteor.className,
+                left: meteor.style.left,
+                top: meteor.style.top,
+                duration: meteor.style.animationDuration
+            });
+
+            // 动画完成后移除
+            setTimeout(() => {
+                if (meteor.parentNode) {
+                    meteor.parentNode.removeChild(meteor);
+                }
+            }, speed * 1000);
+        }
+
+        // 自动测试
+        setInterval(() => {
+            if (Math.random() > 0.7) { // 30%概率创建流星
+                createTestMeteor();
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
