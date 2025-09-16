@@ -1,0 +1,668 @@
+{
+  "subscriptions": [
+    {
+      "level": "超星",
+      "blog_name": "JavaScript Weekly",
+      "favorite_icon": "https://javascriptweekly.com/favicon.ico",
+      "rss_url": "https://javascriptweekly.com/rss",
+      "blog_url": "https://javascriptweekly.com/",
+      "description": "每周精选的JavaScript新闻和资源",
+      "tags": [
+        "前端开发",
+        "JavaScript",
+        "新闻",
+        "周刊",
+        "教程"
+      ]
+    },
+    {
+      "level": "超星",
+      "blog_name": "CSS-Tricks",
+      "favorite_icon": "https://css-tricks.com/favicon.ico",
+      "rss_url": "https://css-tricks.com/feed/",
+      "blog_url": "https://css-tricks.com/",
+      "description": "CSS技巧和前端开发最佳实践",
+      "tags": [
+        "前端开发",
+        "JavaScript",
+        "新闻",
+        "周刊",
+        "教程"
+      ]
+    },
+    {
+      "level": "超星",
+      "blog_name": "WebKit Blog",
+      "favorite_icon": "https://webkit.org/favicon.ico",
+      "rss_url": "https://webkit.org/feed/",
+      "blog_url": "https://webkit.org/",
+      "description": "Safari浏览器引擎技术更新",
+      "tags": [
+        "浏览器",
+        "WebKit",
+        "Safari",
+        "引擎",
+        "技术"
+      ]
+    },
+    {
+      "level": "超星",
+      "blog_name": "V8 Blog",
+      "favorite_icon": "https://v8.dev/favicon.ico",
+      "rss_url": "https://v8.dev/blog.atom",
+      "blog_url": "https://v8.dev/",
+      "description": "Google V8 JavaScript引擎技术博客",
+      "tags": [
+        "JavaScript",
+        "引擎",
+        "V8",
+        "Google",
+        "性能",
+        "编译器"
+      ]
+    },
+    {
+      "level": "亮星",
+      "blog_name": "Smashing Magazine",
+      "favorite_icon": "https://www.smashingmagazine.com/favicon.ico",
+      "rss_url": "https://www.smashingmagazine.com/feed/",
+      "blog_url": "https://www.smashingmagazine.com/",
+      "description": "网页设计和开发的专业资源",
+      "tags": [
+        "设计",
+        "开发",
+        "UI/UX",
+        "用户体验",
+        "专业资源"
+      ]
+    },
+    {
+      "level": "亮星",
+      "blog_name": "Dev.to",
+      "favorite_icon": "https://dev.to/favicon.ico",
+      "rss_url": "https://dev.to/feed",
+      "description": "开发者社区和学习资源",
+      "tags": [
+        "社区",
+        "开发者",
+        "学习",
+        "分享",
+        "教程",
+        "讨论"
+      ],
+      "blog_url": "https://dev.to/"
+    },
+    {
+      "level": "亮星",
+      "blog_name": "MDN Web Docs",
+      "favorite_icon": "https://developer.mozilla.org/favicon.ico",
+      "rss_url": "https://developer.mozilla.org/en-US/docs/Web/rss.xml",
+      "description": "Mozilla开发者网络文档更新",
+      "tags": [
+        "文档",
+        "Mozilla",
+        "Web标准",
+        "参考",
+        "规范",
+        "浏览器"
+      ],
+      "blog_url": "https://developer.mozilla.org/"
+    },
+    {
+      "level": "亮星",
+      "blog_name": "Frontend Focus",
+      "favorite_icon": "https://frontendfoc.us/favicon.ico",
+      "rss_url": "https://frontendfoc.us/rss",
+      "description": "每周前端开发新闻和资源",
+      "tags": [
+        "前端开发",
+        "JavaScript",
+        "新闻",
+        "周刊",
+        "教程"
+      ],
+      "blog_url": "https://frontendfoc.us/"
+    },
+    {
+      "level": "亮星",
+      "blog_name": "SitePoint",
+      "favorite_icon": "https://www.sitepoint.com/favicon.ico",
+      "rss_url": "https://www.sitepoint.com/feed/",
+      "description": "Web开发教程和最佳实践",
+      "tags": [
+        "Web开发",
+        "教程",
+        "最佳实践",
+        "前端",
+        "后端",
+        "全栈"
+      ],
+      "blog_url": "https://www.sitepoint.com/"
+    },
+    {
+      "level": "亮星",
+      "blog_name": "CodePen Blog",
+      "favorite_icon": "https://codepen.io/favicon.ico",
+      "rss_url": "https://blog.codepen.io/feed/",
+      "description": "前端开发工具和创意分享",
+      "tags": [
+        "工具",
+        "开发",
+        "CodePen",
+        "创意",
+        "实验",
+        "演示"
+      ],
+      "blog_url": "https://codepen.io/"
+    },
+    {
+      "level": "中星",
+      "blog_name": "GitHub Blog",
+      "favorite_icon": "https://github.com/favicon.ico",
+      "rss_url": "https://github.blog/feed/",
+      "description": "GitHub官方博客和技术更新",
+      "tags": [
+        "GitHub",
+        "版本控制",
+        "Git",
+        "协作",
+        "开源",
+        "平台"
+      ],
+      "blog_url": "https://github.blog/"
+    },
+    {
+      "level": "中星",
+      "blog_name": "React Blog",
+      "favorite_icon": "https://reactjs.org/favicon.ico",
+      "rss_url": "https://reactjs.org/feed.xml",
+      "description": "React框架官方更新和教程",
+      "tags": [
+        "React",
+        "前端框架",
+        "JavaScript",
+        "组件",
+        "Facebook",
+        "UI库"
+      ],
+      "blog_url": "https://reactjs.org/blog/"
+    },
+    {
+      "level": "中星",
+      "blog_name": "Vue.js Blog",
+      "favorite_icon": "https://vuejs.org/favicon.ico",
+      "rss_url": "https://blog.vuejs.org/feed.xml",
+      "description": "Vue.js框架官方博客",
+      "tags": [
+        "Vue",
+        "前端框架",
+        "JavaScript",
+        "渐进式",
+        "组件",
+        "响应式"
+      ],
+      "blog_url": "https://blog.vuejs.org/"
+    },
+    {
+      "level": "中星",
+      "blog_name": "Angular Blog",
+      "favorite_icon": "https://angular.io/favicon.ico",
+      "rss_url": "https://blog.angular.io/rss/",
+      "description": "Angular框架官方博客",
+      "tags": [
+        "Angular",
+        "前端框架",
+        "TypeScript",
+        "Google",
+        "企业级",
+        "组件"
+      ],
+      "blog_url": "https://blog.angular.io/"
+    },
+    {
+      "level": "中星",
+      "blog_name": "Svelte Blog",
+      "favorite_icon": "https://svelte.dev/favicon.ico",
+      "rss_url": "https://svelte.dev/blog/rss.xml",
+      "description": "Svelte框架官方博客",
+      "tags": [
+        "Svelte",
+        "前端框架",
+        "编译器",
+        "性能",
+        "轻量级",
+        "现代"
+      ],
+      "blog_url": "https://svelte.dev/blog/"
+    },
+    {
+      "level": "中星",
+      "blog_name": "Next.js Blog",
+      "favorite_icon": "https://nextjs.org/favicon.ico",
+      "rss_url": "https://nextjs.org/feed.xml",
+      "description": "Next.js React框架官方博客",
+      "tags": [
+        "Next.js",
+        "React",
+        "SSR",
+        "Vercel",
+        "全栈",
+        "服务端渲染"
+      ],
+      "blog_url": "https://nextjs.org/blog/"
+    },
+    {
+      "level": "小星",
+      "blog_name": "Node.js Blog",
+      "favorite_icon": "https://nodejs.org/favicon.ico",
+      "rss_url": "https://nodejs.org/en/feed/blog.xml",
+      "description": "Node.js官方博客和技术更新",
+      "tags": [
+        "Node.js",
+        "后端",
+        "JavaScript",
+        "运行时",
+        "服务器",
+        "异步"
+      ],
+      "blog_url": "https://nodejs.org/en/blog/"
+    },
+    {
+      "level": "小星",
+      "blog_name": "TypeScript Blog",
+      "favorite_icon": "https://www.typescriptlang.org/favicon.ico",
+      "rss_url": "https://devblogs.microsoft.com/typescript/feed/",
+      "description": "TypeScript官方博客",
+      "tags": [
+        "TypeScript",
+        "类型系统",
+        "JavaScript",
+        "Microsoft",
+        "静态类型",
+        "编译"
+      ],
+      "blog_url": "https://devblogs.microsoft.com/typescript/"
+    },
+    {
+      "level": "小星",
+      "blog_name": "Web.dev",
+      "favorite_icon": "https://web.dev/favicon.ico",
+      "rss_url": "https://web.dev/feed.xml",
+      "description": "Google Web开发者指南",
+      "tags": [
+        "Web开发",
+        "教程",
+        "最佳实践",
+        "前端",
+        "后端",
+        "全栈"
+      ],
+      "blog_url": "https://web.dev/"
+    },
+    {
+      "level": "小星",
+      "blog_name": "Python Blog",
+      "favorite_icon": "https://www.python.org/favicon.ico",
+      "rss_url": "https://blog.python.org/feeds/posts/default",
+      "description": "Python官方博客和技术更新",
+      "tags": [
+        "Python",
+        "编程语言",
+        "脚本",
+        "后端",
+        "数据科学",
+        "人工智能"
+      ],
+      "blog_url": "https://blog.python.org/"
+    },
+    {
+      "level": "小星",
+      "blog_name": "Go Blog",
+      "favorite_icon": "https://go.dev/favicon.ico",
+      "rss_url": "https://go.dev/blog/feed.atom",
+      "description": "Go语言官方博客",
+      "tags": [
+        "Go",
+        "编程语言",
+        "Google",
+        "并发",
+        "系统编程",
+        "云原生"
+      ],
+      "blog_url": "https://go.dev/blog/"
+    },
+    {
+      "level": "小星",
+      "blog_name": "Rust Blog",
+      "favorite_icon": "https://www.rust-lang.org/favicon.ico",
+      "rss_url": "https://blog.rust-lang.org/feed.xml",
+      "description": "Rust编程语言官方博客",
+      "tags": [
+        "Rust",
+        "系统编程",
+        "性能",
+        "内存安全",
+        "并发",
+        "现代化"
+      ],
+      "blog_url": "https://blog.rust-lang.org/"
+    },
+    {
+      "level": "小星",
+      "blog_name": "Docker Blog",
+      "favorite_icon": "https://www.docker.com/favicon.ico",
+      "rss_url": "https://blog.docker.com/feed/",
+      "description": "Docker容器化技术官方博客",
+      "tags": [
+        "Docker",
+        "容器化",
+        "部署",
+        "DevOps",
+        "微服务",
+        "云原生"
+      ],
+      "blog_url": "https://blog.docker.com/"
+    },
+    {
+      "level": "微星",
+      "blog_name": "Can I Use",
+      "favorite_icon": "https://caniuse.com/favicon.ico",
+      "rss_url": "https://caniuse.com/feed",
+      "description": "浏览器兼容性数据更新",
+      "tags": [
+        "浏览器兼容性",
+        "工具",
+        "参考",
+        "开发",
+        "支持",
+        "特性"
+      ],
+      "blog_url": "https://caniuse.com/"
+    },
+    {
+      "level": "微星",
+      "blog_name": "Stack Overflow Blog",
+      "favorite_icon": "https://stackoverflow.com/favicon.ico",
+      "rss_url": "https://stackoverflow.blog/feed/",
+      "description": "Stack Overflow社区博客",
+      "tags": [
+        "Stack Overflow",
+        "社区",
+        "Q&A",
+        "开发者",
+        "技术支持",
+        "编程"
+      ],
+      "blog_url": "https://stackoverflow.blog/"
+    },
+    {
+      "level": "微星",
+      "blog_name": "CSS Weekly",
+      "favorite_icon": "https://css-weekly.com/favicon.ico",
+      "rss_url": "https://css-weekly.com/feed/",
+      "description": "每周CSS新闻和资源",
+      "tags": [
+        "CSS",
+        "样式",
+        "周刊",
+        "技巧",
+        "教程",
+        "前端开发"
+      ],
+      "blog_url": "https://css-weekly.com/"
+    },
+    {
+      "level": "微星",
+      "blog_name": "A List Apart",
+      "favorite_icon": "https://alistapart.com/favicon.ico",
+      "rss_url": "https://alistapart.com/main/feed/",
+      "description": "网页设计和开发专业文章",
+      "tags": [
+        "网页设计",
+        "用户体验",
+        "专业文章",
+        "标准",
+        "最佳实践",
+        "界面"
+      ],
+      "blog_url": "https://alistapart.com/"
+    },
+    {
+      "level": "微星",
+      "blog_name": "Codrops",
+      "favorite_icon": "https://tympanus.net/codrops/favicon.ico",
+      "rss_url": "https://tympanus.net/codrops/feed/",
+      "description": "创意前端开发教程和实验",
+      "tags": [
+        "创意",
+        "前端开发",
+        "实验",
+        "动画",
+        "交互",
+        "视觉效果"
+      ],
+      "blog_url": "https://tympanus.net/codrops/"
+    },
+    {
+      "level": "微星",
+      "blog_name": "Hacker News",
+      "favorite_icon": "https://news.ycombinator.com/favicon.ico",
+      "rss_url": "https://hnrss.org/frontpage",
+      "description": "科技新闻和讨论聚合",
+      "tags": [
+        "科技新闻",
+        "聚合",
+        "讨论",
+        "创业",
+        "技术",
+        "社区"
+      ],
+      "blog_url": "https://news.ycombinator.com/"
+    },
+    {
+      "level": "微星",
+      "blog_name": "Lobsters",
+      "favorite_icon": "https://lobste.rs/favicon.ico",
+      "rss_url": "https://lobste.rs/rss",
+      "description": "程序员社区和技术讨论",
+      "tags": [
+        "社区",
+        "开发者",
+        "学习",
+        "分享",
+        "教程",
+        "讨论"
+      ],
+      "blog_url": "https://lobste.rs/"
+    },
+    {
+      "level": "微星",
+      "blog_name": "Web Platform News",
+      "favorite_icon": "https://webplatform.news/favicon.ico",
+      "rss_url": "https://webplatform.news/rss.xml",
+      "description": "Web平台技术和标准更新",
+      "tags": [
+        "Web平台",
+        "技术标准",
+        "浏览器",
+        "规范",
+        "更新",
+        "兼容性"
+      ],
+      "blog_url": "https://webplatform.news/"
+    },
+    {
+      "level": "微星",
+      "blog_name": "HTTP 203",
+      "favorite_icon": "https://developers.google.com/favicon.ico",
+      "rss_url": "https://http203.libsyn.com/rss",
+      "description": "Google开发者播客和访谈",
+      "tags": [
+        "播客",
+        "Google",
+        "开发者",
+        "访谈",
+        "技术讨论",
+        "音频"
+      ],
+      "blog_url": "https://developers.google.com/web/updates/"
+    },
+    {
+      "level": "微星",
+      "blog_name": "Perf Planet",
+      "favorite_icon": "https://www.perfplanet.com/favicon.ico",
+      "rss_url": "https://www.perfplanet.com/rss.xml",
+      "description": "Web性能优化和技术分享",
+      "tags": [
+        "Web性能",
+        "优化",
+        "速度",
+        "用户体验",
+        "技术分享",
+        "最佳实践"
+      ],
+      "blog_url": "https://www.perfplanet.com/"
+    }
+  ],
+  "metadata": {
+    "version": "1.1",
+    "last_updated": "2024-12-19",
+    "total_subscriptions": 33,
+    "level_distribution": {
+      "超星": 5,
+      "亮星": 6,
+      "中星": 6,
+      "小星": 7,
+      "微星": 10
+    },
+    "tags": [
+      "前端开发",
+      "JavaScript",
+      "新闻",
+      "周刊",
+      "教程",
+      "CSS",
+      "技巧",
+      "最佳实践",
+      "浏览器",
+      "WebKit",
+      "Safari",
+      "引擎",
+      "技术",
+      "JavaScript引擎",
+      "V8",
+      "Google",
+      "性能",
+      "编译器",
+      "设计",
+      "开发",
+      "UI/UX",
+      "用户体验",
+      "专业资源",
+      "社区",
+      "开发者",
+      "学习",
+      "分享",
+      "讨论",
+      "文档",
+      "Mozilla",
+      "Web标准",
+      "参考",
+      "规范",
+      "浏览器",
+      "Web开发",
+      "教程",
+      "最佳实践",
+      "前端",
+      "后端",
+      "全栈",
+      "工具",
+      "开发",
+      "CodePen",
+      "创意",
+      "实验",
+      "演示",
+      "GitHub",
+      "版本控制",
+      "Git",
+      "协作",
+      "开源",
+      "平台",
+      "React",
+      "前端框架",
+      "JavaScript",
+      "组件",
+      "Facebook",
+      "UI库",
+      "Vue",
+      "渐进式",
+      "响应式",
+      "Angular",
+      "TypeScript",
+      "企业级",
+      "Svelte",
+      "编译器",
+      "轻量级",
+      "现代",
+      "Next.js",
+      "SSR",
+      "Vercel",
+      "服务端渲染",
+      "Node.js",
+      "后端",
+      "运行时",
+      "服务器",
+      "异步",
+      "类型系统",
+      "Microsoft",
+      "静态类型",
+      "编译",
+      "Python",
+      "编程语言",
+      "脚本",
+      "数据科学",
+      "人工智能",
+      "Go",
+      "并发",
+      "系统编程",
+      "云原生",
+      "Rust",
+      "内存安全",
+      "现代化",
+      "Docker",
+      "容器化",
+      "部署",
+      "DevOps",
+      "微服务",
+      "浏览器兼容性",
+      "支持",
+      "特性",
+      "Stack Overflow",
+      "Q&A",
+      "技术支持",
+      "编程",
+      "样式",
+      "网页设计",
+      "专业文章",
+      "标准",
+      "界面",
+      "动画",
+      "交互",
+      "视觉效果",
+      "科技新闻",
+      "聚合",
+      "创业",
+      "Web平台",
+      "技术标准",
+      "更新",
+      "兼容性",
+      "播客",
+      "访谈",
+      "技术讨论",
+      "音频",
+      "Web性能",
+      "优化",
+      "速度"
+    ]
+  }
+}

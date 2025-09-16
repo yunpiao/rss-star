@@ -4,16 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>星空特效测试</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-</head>
-<body>
-    <div class="starsky-container" id="starskyContainer">
-        <!-- 流星容器 -->
-        <div class="meteors-container" id="meteorsContainer"></div>
 
-        <!-- 显示说明面板的按钮 -->
-        <div class="show-info-btn" id="showInfoBtn">📋</div>
+    <!-- 样式文件 - 包含所有视觉效果和动画 -->
+    <link rel="stylesheet" href="styles.css?v=2">
+
+    <!-- 主脚本文件 - 星星生成、流星系统、交互逻辑 -->
+    <script src="script.js"></script>
+
+    <!--
+    🌟 星空特效项目 - 功能概述
+
+    核心功能：
+    - 150个分等级的星星系统（微星、小星、中星、亮星、超星）
+    - 动态流星特效（6种类型，包括稀有的金色和蓝色流星）
+    - 智能防重叠布局算法
+    - 交互式星星信息显示
+    - 实时筛选和统计功能
+
+    技术特点：
+    - 纯CSS动画，无JavaScript性能负担
+    - 响应式设计，适配不同屏幕尺寸
+    - 模块化代码结构，便于维护扩展
+    - 详细的控制台调试信息
+    -->
+<body>
+    <!-- ==============================================
+         主容器 - 星空视觉区域
+         ============================================== -->
+    <div class="starsky-container" id="starskyContainer">
+
+        <!-- 流星特效容器 - 动态生成的流星会添加到这里 -->
+        <div class="meteor-container" id="meteorContainer"></div>
+
+        <!-- 信息面板切换按钮 - 点击显示/隐藏说明面板 -->
+        <div class="show-info-btn" id="showInfoBtn" title="显示说明面板">📋</div>
 
         <!-- 调试信息显示 -->
         <div id="debugInfo" style="position: fixed; top: 10px; left: 10px; background: rgba(0,0,0,0.8); color: white; padding: 10px; border-radius: 5px; font-size: 12px; z-index: 1000; display: none;">
@@ -23,18 +47,30 @@
             <div>尝试次数: <span id="attempts">0</span></div>
         </div>
 
-        <!-- 星星筛选按钮 -->
+        <!-- ==============================================
+             星星筛选系统 - 交互控制面板
+             ============================================== -->
         <div class="star-filter" id="starFilter">
+
+            <!-- 筛选开关按钮 - 点击展开/收起筛选面板 -->
             <div class="filter-toggle" id="filterToggle" title="星星筛选">🔍</div>
+
+            <!-- 筛选面板 - 包含所有筛选选项和控制按钮 -->
             <div class="filter-panel" id="filterPanel">
+
+                <!-- 面板标题 -->
                 <div class="filter-title">选择显示的星星等级</div>
+
+                <!-- 筛选选项容器 - JavaScript会动态生成选项 -->
                 <div class="filter-options" id="filterOptions">
                     <!-- 筛选选项将通过JavaScript动态生成 -->
                 </div>
+
+                <!-- 操作按钮组 -->
                 <div class="filter-actions">
-                    <button class="filter-btn" id="selectAllBtn">全选</button>
-                    <button class="filter-btn" id="selectNoneBtn">全不选</button>
-                    <button class="filter-btn primary" id="applyFilterBtn">应用</button>
+                    <button class="filter-btn" id="selectAllBtn" title="选择所有星星等级">全选</button>
+                    <button class="filter-btn" id="selectNoneBtn" title="取消选择所有">全不选</button>
+                    <button class="filter-btn primary" id="applyFilterBtn" title="应用筛选设置">应用</button>
                 </div>
             </div>
         </div>
@@ -52,33 +88,33 @@
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; margin-bottom: 16px;">
                     <div style="background: rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; text-align: center;">
                         <div style="font-size: 12px; opacity: 0.8;">微星</div>
-                        <div style="font-size: 20px;">✨</div>
+                        <div style="font-size: 18px;">✨</div>
                         <div style="font-size: 11px; color: rgba(255,255,255,0.6);">60个</div>
-                        <div style="font-size: 10px; color: rgba(255,255,255,0.5);">0.3x</div>
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.5);">0.2x</div>
                     </div>
                     <div style="background: rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; text-align: center;">
                         <div style="font-size: 12px; opacity: 0.8;">小星</div>
-                        <div style="font-size: 22px;">⭐</div>
+                        <div style="font-size: 21px;">⭐</div>
                         <div style="font-size: 11px; color: rgba(255,255,255,0.6);">50个</div>
-                        <div style="font-size: 10px; color: rgba(255,255,255,0.5);">0.6x</div>
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.5);">0.35x</div>
                     </div>
                     <div style="background: rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; text-align: center;">
                         <div style="font-size: 12px; opacity: 0.8;">中星</div>
-                        <div style="font-size: 24px;">🌟</div>
+                        <div style="font-size: 25px;">🌟</div>
                         <div style="font-size: 11px; color: rgba(255,255,255,0.6);">30个</div>
-                        <div style="font-size: 10px; color: rgba(255,255,255,0.5);">1.0x</div>
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.5);">0.5x</div>
                     </div>
                     <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,255,255,0.1)); padding: 8px; border-radius: 6px; text-align: center; border: 1px solid rgba(255,215,0,0.3);">
                         <div style="font-size: 12px; opacity: 0.8; color: #FFD700;">亮星</div>
-                        <div style="font-size: 26px;">💫</div>
+                        <div style="font-size: 28px;">💫</div>
                         <div style="font-size: 11px; color: rgba(255,215,0,0.8);">8个</div>
-                        <div style="font-size: 10px; color: rgba(255,215,0,0.6);">1.5x</div>
+                        <div style="font-size: 10px; color: rgba(255,215,0,0.6);">0.7x</div>
                     </div>
                     <div style="background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(255,255,255,0.1)); padding: 8px; border-radius: 6px; text-align: center; border: 1px solid rgba(255,215,0,0.4);">
                         <div style="font-size: 12px; opacity: 0.8; color: #FFD700;">超星</div>
-                        <div style="font-size: 28px;">🌟</div>
+                        <div style="font-size: 32px;">🌟</div>
                         <div style="font-size: 11px; color: rgba(255,215,0,0.8);">2个</div>
-                        <div style="font-size: 10px; color: rgba(255,215,0,0.6); margin-top: 2px;">2.0x 金色光晕</div>
+                        <div style="font-size: 10px; color: rgba(255,215,0,0.6); margin-top: 2px;">1.0x 金色光晕</div>
                     </div>
                 </div>
             </div>
